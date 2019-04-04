@@ -26,12 +26,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserModel checkUsername(String username) {
-        return userRepository.getUserModelByUsername(username);
+    public boolean checkUsername(String username) {
+        return userRepository.existsByUsername(username);
     }
 
     @Override
-    public UserModel checkEmail(String email) {
-        return userRepository.getUserModelByEmail(email);
+    public boolean checkEmail(String email) {
+        return userRepository.existsByEmail(email);
     }
 }

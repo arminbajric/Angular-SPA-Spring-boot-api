@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface RemindersRepository extends MongoRepository<RemindersModel,Long> {
     public List<RemindersModel> getAllByUserModel(UserModel userModel);
-    public List<RemindersModel> getAllByUserModelContaining(String email);
+    public List<RemindersModel> getAllBy(String email);
 }

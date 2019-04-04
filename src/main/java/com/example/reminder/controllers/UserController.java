@@ -56,27 +56,24 @@ public class UserController {
     @RequestMapping(value="/check-username",method=RequestMethod.GET)
     public ResponseEntity checkUsername(@RequestParam(name = "username") String username)
     {
-      UserModel userModel=userService.checkUsername(username);
-      if(userModel.getUsername()==username)
-      {
-          return ResponseEntity.ok().build();
-      }
-      else
-      {
-          return ResponseEntity.noContent().build();
-      }
+            if (userService.checkUsername(username)) {
+                return ResponseEntity.status(201).build();
+            }
+           else{
+            return ResponseEntity.status(200).build();
+           }
     }
     @RequestMapping(value="/check-email",method=RequestMethod.GET)
     public ResponseEntity checkEmail(@RequestParam(name = "email") String email)
     {
-        UserModel userModel=userService.checkEmail(email);
-        if(userModel.getUsername()==email)
+
+        if(userService.checkEmail(email))
         {
-            return ResponseEntity.ok().build();
+            return ResponseEntity.status(201).build();
         }
         else
         {
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.status(200).build();
         }
     }
 }
