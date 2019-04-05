@@ -35,4 +35,9 @@ private final RemindersRepository remindersRepository;
     public RemindersModel getReminderByTitle(String title) {
         return null;
     }
+
+    @Override
+    public void saveReminder(RemindersModel remindersModel) {
+        remindersRepository.save(remindersModel);
+    }
 }

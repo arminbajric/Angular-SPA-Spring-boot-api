@@ -22,13 +22,13 @@ public class UserController {
 
         this.jwtUtillity = jwtUtillity;
     }
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public ResponseEntity checkUser(@PathVariable(name = "email") String email,@PathVariable(name="password") String password)
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    public ResponseEntity checkUser(@RequestParam(name = "email") String email,@RequestParam(name="password") String password)
     {
-        if(userService.getUser(email,password)!= null)
+        if(userService.checkLogin(email, password)==false)
         {
             String UserToken=jwtUtillity.generateJwt(email);
-            return ResponseEntity.ok().header("UserToken",UserToken).body(userService.getUser(email, password));
+            return ResponseEntity.ok().header("UserToken",UserToken).body(userService.getUser(email));
         }
         else{
             return ResponseEntity.notFound().build();

@@ -9,4 +9,5 @@ public interface RemindersService {
     public List<RemindersModel> getAllByUser(UserModel userModel);
     public List<RemindersModel> getAllByUserEmail(String email);
     public RemindersModel getReminderByTitle(String title);
+    public void saveReminder(RemindersModel remindersModel);
 }

@@ -15,9 +15,10 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
+
     @Override
-    public UserModel getUser(String username, String password) {
-        return userRepository.getUserModelByUsernameAndPassword(username,password);
+    public boolean checkLogin(String username, String password) {
+        return userRepository.existsByUsernameAndPassword(username, password);
     }
 
     @Override
@@ -33,5 +34,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean checkEmail(String email) {
         return userRepository.existsByEmail(email);
+    }
+
+    @Override
+    public UserModel getUser(String email) {
+        return userRepository.getUserModelByEmail(email);
     }
 }
