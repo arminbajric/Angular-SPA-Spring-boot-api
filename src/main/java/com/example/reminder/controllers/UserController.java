@@ -5,11 +5,14 @@ import com.example.reminder.security.JwtUtillity;
 import com.example.reminder.services.UserService;
 
 import com.mongodb.MongoCommandException;
+import io.jsonwebtoken.JwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -37,11 +40,13 @@ public class UserController {
     @RequestMapping(value="/signup",method = RequestMethod.POST)
     public ResponseEntity createUser(@RequestBody UserModel userModel)
     {
-
+        SimpleDateFormat dateFormat=new SimpleDateFormat();
+        String pattern="dd.MM.yyyy";
+        dateFormat.applyPattern(pattern);
         System.out.print(userModel.toString());
         try
         {
-            userModel.setDor(new Date());
+            userModel.setDor(dateFormat.format(new Date()));
             userService.saveUser(userModel);
         }
         catch(MongoCommandException e){
@@ -75,5 +80,21 @@ public class UserController {
         {
             return ResponseEntity.status(200).build();
         }
+    }
+    @RequestMapping(value="/decode-jwt",method=RequestMethod.GET)
+    public ResponseEntity getUsername(@RequestParam("token") String token)
+    {
+        String user;
+        try {
+            user = jwtUtillity.extractEmail(token);
+        }catch(JwtException e){
+            e.printStackTrace();
+          return ResponseEntity.status(201).build();
+        }
+
+
+        String[] username=new String[]{userService.getUser(user).getUsername()};
+
+         return ResponseEntity.ok().body(username);
     }
 }

@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.xml.ws.Response;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @RestController
 public class RemindersController {
@@ -29,7 +31,10 @@ public class RemindersController {
     @RequestMapping(value="/app/create-new-reminder",method = RequestMethod.POST)
     public ResponseEntity createReminder(@RequestBody RemindersModel remindersModel)
     {
-
+        SimpleDateFormat dateFormat=new SimpleDateFormat();
+        String datePattern="dd.MM.yyyy";
+        dateFormat.applyPattern(datePattern);
+        remindersModel.setDoc(dateFormat.format(new Date()));
         remindersService.saveReminder(remindersModel);
         return ResponseEntity.status(200).build();
     }

@@ -1,31 +1,34 @@
 package com.example.reminder.models;
 
+import net.bytebuddy.build.Plugin;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.GeneratedValue;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Document(collection = "reminders")
 public class RemindersModel {
-    @GenericGenerator(
-            name="reminderGenerator",
-            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
-            parameters = {
-                    @org.hibernate.annotations.Parameter(name = "sequence_name", value = "remindersSequence"),
-                    @org.hibernate.annotations.Parameter(name = "initial_value", value = "1"),
-                    @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")
-            }
 
-    )
     @Id
-    @GeneratedValue(generator = "reminderGenerator")
     private Long Id;
     private String reminderTitle;
     private String reminderSubtitle;
-    private Date doc;
-    private Date doe;
+    private String doc;
+    private String toe;
+    private String doe;
+
+    public String getToe() {
+        return toe;
+    }
+
+    public void setToe(String toe) {
+        this.toe = toe;
+    }
+
     private String reminderText;
     private UserModel userModel;
 
@@ -53,19 +56,19 @@ public class RemindersModel {
         this.reminderSubtitle = reminderSubtitle;
     }
 
-    public Date getDoc() {
+    public String getDoc() {
         return doc;
     }
 
-    public void setDoc(Date doc) {
+    public void setDoc(String doc) {
         this.doc = doc;
     }
 
-    public Date getDoe() {
+    public String getDoe() {
         return doe;
     }
 
-    public void setDoe(Date doe) {
+    public void setDoe(String doe) {
         this.doe = doe;
     }
 

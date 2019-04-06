@@ -18,7 +18,7 @@ public class UserModel {
 
 
     private String password;
-    private Date dor;
+    private String dor;
 
     public String getUsername() {
         return username;
@@ -44,11 +44,11 @@ public class UserModel {
         this.password = password;
     }
 
-    public Date getDor() {
+    public String getDor() {
         return dor;
     }
 
-    public void setDor(Date dor) {
+    public void setDor(String dor) {
         this.dor = dor;
     }
 

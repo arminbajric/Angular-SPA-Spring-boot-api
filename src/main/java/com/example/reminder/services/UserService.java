@@ -1,5 +1,6 @@
 package com.example.reminder.services;
 
+import com.example.reminder.models.SecretKeyModel;
 import com.example.reminder.models.UserModel;
 
 public interface UserService {
@@ -8,4 +9,5 @@ public interface UserService {
     public boolean checkUsername(String username);
     public boolean checkEmail(String email);
     public UserModel getUser(String email);
+    public SecretKeyModel getKey();
 }

@@ -1,6 +1,8 @@
 package com.example.reminder.servicesImpl;
 
+import com.example.reminder.models.SecretKeyModel;
 import com.example.reminder.models.UserModel;
+import com.example.reminder.repository.SecretKeyRepository;
 import com.example.reminder.repository.UserRepository;
 import com.example.reminder.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +12,11 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
     @Autowired
     private final UserRepository userRepository;
-
-    public UserServiceImpl(UserRepository userRepository) {
+    @Autowired
+    private final SecretKeyRepository secretKeyRepository;
+    public UserServiceImpl(UserRepository userRepository, SecretKeyRepository secretKeyRepository) {
         this.userRepository = userRepository;
+        this.secretKeyRepository = secretKeyRepository;
     }
 
 
@@ -39,5 +43,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserModel getUser(String email) {
         return userRepository.getUserModelByEmail(email);
+    }
+
+    @Override
+    public SecretKeyModel getKey() {
+        return secretKeyRepository.getAllBy();
     }
 }
