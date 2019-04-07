@@ -4,7 +4,7 @@ import com.example.reminder.models.SecretKeyModel;
 import com.example.reminder.models.UserModel;
 
 public interface UserService {
-    public boolean checkLogin(String username,String password);
+    public boolean checkLogin(String email,String password);
     public void saveUser(UserModel userModel);
     public boolean checkUsername(String username);
     public boolean checkEmail(String email);

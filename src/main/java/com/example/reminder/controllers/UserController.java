@@ -28,13 +28,13 @@ public class UserController {
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public ResponseEntity checkUser(@RequestParam(name = "email") String email,@RequestParam(name="password") String password)
     {
-        if(userService.checkLogin(email, password)==false)
+        if(userService.checkLogin(email, password))
         {
             String UserToken=jwtUtillity.generateJwt(email);
             return ResponseEntity.ok().header("UserToken",UserToken).body(userService.getUser(email));
         }
         else{
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(201).build();
         }
     }
     @RequestMapping(value="/signup",method = RequestMethod.POST)

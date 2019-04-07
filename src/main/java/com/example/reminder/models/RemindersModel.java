@@ -16,7 +16,7 @@ public class RemindersModel {
     @Id
     private Long Id;
     private String reminderTitle;
-    private String reminderSubtitle;
+
     private String doc;
     private String toe;
     private String doe;
@@ -30,14 +30,14 @@ public class RemindersModel {
     }
 
     private String reminderText;
-    private UserModel userModel;
+    private String  userEmail;
 
-    public UserModel getUserModel() {
-        return userModel;
+    public String getUserModel() {
+        return userEmail;
     }
 
-    public void setUserModel(UserModel userModel) {
-        this.userModel = userModel;
+    public void setUserModel(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public String getReminderTitle() {
@@ -48,13 +48,6 @@ public class RemindersModel {
         this.reminderTitle = reminderTitle;
     }
 
-    public String getReminderSubtitle() {
-        return reminderSubtitle;
-    }
-
-    public void setReminderSubtitle(String reminderSubtitle) {
-        this.reminderSubtitle = reminderSubtitle;
-    }
 
     public String getDoc() {
         return doc;
