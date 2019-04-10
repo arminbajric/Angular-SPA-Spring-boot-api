@@ -13,8 +13,7 @@ import java.util.Date;
 @Document(collection = "reminders")
 public class RemindersModel {
 
-    @Id
-    private Long Id;
+
     private String reminderTitle;
 
     private String doc;
@@ -32,11 +31,11 @@ public class RemindersModel {
     private String reminderText;
     private String  userEmail;
 
-    public String getUserModel() {
+    public String getUserEmail() {
         return userEmail;
     }
 
-    public void setUserModel(String userEmail) {
+    public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
     }
 

@@ -95,6 +95,6 @@ public class UserController {
 
         String[] username=new String[]{userService.getUser(user).getUsername()};
 
-         return ResponseEntity.ok().body(username);
+         return ResponseEntity.status(200).body(username);
     }
 }

@@ -28,7 +28,7 @@ private final RemindersRepository remindersRepository;
 
     @Override
     public List<RemindersModel> getAllByUserEmail(String email) {
-        return null;
+        return remindersRepository.getAllByUserEmail(email);
     }
 
     @Override
@@ -39,5 +39,15 @@ private final RemindersRepository remindersRepository;
     @Override
     public void saveReminder(RemindersModel remindersModel) {
         remindersRepository.save(remindersModel);
+    }
+
+    @Override
+    public RemindersModel getUpcoming(String email) {
+        return null;
+    }
+
+    @Override
+    public boolean checkIfUserHaveReminders(String email) {
+        return remindersRepository.existsByUserEmail(email);
     }
 }

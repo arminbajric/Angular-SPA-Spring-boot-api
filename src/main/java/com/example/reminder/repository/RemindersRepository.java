@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.List;
 
 public interface RemindersRepository extends MongoRepository<RemindersModel,Long> {
-    public List<RemindersModel> getAllByUserModel(UserModel userModel);
+    public List<RemindersModel> getAllByUserEmail(String email);
     public List<RemindersModel> getAllBy(String email);
+    public boolean existsByUserEmail(String email);
 }
